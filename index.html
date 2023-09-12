@@ -22,6 +22,10 @@
 <br>
 <h1>Avec deviceMotion </h1>
 <div id="infopositionDeviceMotion"></div>
+<br>
+<br>
+<div id="output"></div>
+<canvas id="canvas" style="border: 1px solid black;"></canvas>
 
 </body>
 <script>
@@ -92,5 +96,53 @@ function handleMotionEvent(event) {
 
 window.addEventListener("devicemotion", handleMotionEvent, true);
 
+
+let canvas = document.getElementById('canvas');
+let context = canvas.getContext('2d');
+let output = document.getElementById('output');
+
+canvas.addEventListener('touchstart', handleTouchStart);
+canvas.addEventListener('touchmove', handleTouchMove);
+canvas.addEventListener('touchend', handleTouchEnd);
+
+
+function handleTouchStart(event) {
+      event.preventDefault();
+      const touch = event.touches[0];
+      const x = touch.clientX - canvas.getBoundingClientRect().left;
+      const y = touch.clientY - canvas.getBoundingClientRect().top;
+
+      output.innerHTML = `Touch Start - Position: X=${x}, Y=${y}`;
+      drawPoint(x, y);
+    }
+
+    function handleTouchMove(event) {
+      event.preventDefault();
+      const touch = event.touches[0];
+      const x = touch.clientX - canvas.getBoundingClientRect().left;
+      const y = touch.clientY - canvas.getBoundingClientRect().top;
+
+      output.innerHTML = `Touch Move - Position: X=${x}, Y=${y}`;
+      drawPoint(x, y);
+    }
+    function handleTouchStart(event) {
+      event.preventDefault();
+      const touch = event.touches[0];
+      const x = touch.clientX - canvas.getBoundingClientRect().left;
+      const y = touch.clientY - canvas.getBoundingClientRect().top;
+
+      output.innerHTML = `Touch Start - Position: X=${x}, Y=${y}`;
+      drawPoint(x, y);
+    }
+
+    function handleTouchMove(event) {
+      event.preventDefault();
+      const touch = event.touches[0];
+      const x = touch.clientX - canvas.getBoundingClientRect().left;
+      const y = touch.clientY - canvas.getBoundingClientRect().top;
+
+      output.innerHTML = `Touch Move - Position: X=${x}, Y=${y}`;
+      drawPoint(x, y);
+    } 
 </script>
 </html>
