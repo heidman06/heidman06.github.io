@@ -72,7 +72,7 @@ function handleOrientation(event) {
 
 window.addEventListener("deviceorientation", handleOrientation, true);
 
-function handleMotion(deviceOrientation) {
+function handleMotion(event) {
   const alpha = event.alpha;
   const beta = event.beta;
   const gamma = event.gamma;
