@@ -1,1 +1,55 @@
-Hello World
+<!Doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML5 TP1 : Géolocalisation</title>
+</head>
+<body>
+
+<!-- Un élément HTML pour recueillir l’affichage -->
+<h1>Avec getCurrentPosition </h1>
+<div id="infopositionWithGet"></div>
+<br>
+<br>
+<h1>Avec watchPosition </h1>
+<div id="infopositionWithWatch"></div>
+
+</body>
+<script>
+    function getCurrentPositionInfos() {
+        if ( navigator.geolocation ) {
+            navigator.geolocation.getCurrentPosition(function(position){
+                let lat = position.coords.latitude;
+                let long = position.coords.longitude;
+                let altitude = position.coords.altitude;
+                let precisionMesure = position.coords.accuracy;
+                let vitesse = position.coords.speed;
+                let dateTime = position.timestamp;
+                document.getElementById('infopositionWithGet').innerHTML = 'latitude : ' + lat
+                + '<br>' + 'longitude : ' + long + '<br>' + 'altitude : ' + altitude + '<br>' + 
+                'precisionMesure : ' + precisionMesure + '<br>' + 'vitesse : ' + vitesse + '<br>' + 'dateTime : '
+                + dateTime;
+        });
+    }
+}
+getCurrentPositionInfos();
+    function watchCurrentPositionInfos() {
+        if ( navigator.geolocation ) {
+            navigator.geolocation.watchPosition(function(position) {
+                let lat = position.coords.latitude;
+                let long = position.coords.longitude;
+                let altitude = position.coords.altitude;
+                let precisionMesure = position.coords.accuracy;
+                let vitesse = position.coords.speed;
+                let dateTime = position.timestamp;
+                document.getElementById('infopositionWithWatch').innerHTML = 'latitude : ' + lat
+                + '<br>' + 'longitude : ' + long + '<br>' + 'altitude : ' + altitude + '<br>' + 
+                'precisionMesure : ' + precisionMesure + '<br>' + 'vitesse : ' + vitesse + '<br>' + 'dateTime : '
+                + dateTime;
+            })
+        }
+    }
+watchCurrentPositionInfos();
+</script>
+</html>
