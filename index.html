@@ -72,17 +72,25 @@ function handleOrientation(event) {
 
 window.addEventListener("deviceorientation", handleOrientation, true);
 
-function handleMotion(event) {
-  const alpha = event.alpha;
-  const beta = event.beta;
-  const gamma = event.gamma;
+function handleMotionEvent(event) {
+  const accelerationX = event.acceleration.x;
+  const accelerationY = event.acceleration.y;
+  const accelerationZ = event.acceleration.z;
+
+  const rotationRateAlpha = event.rotationRate.alpha;
+  const rotationRateBeta = event.rotationRate.beta;
+  const rotationRateGamma = event.rotationRate.gamma;
+
   document.getElementById('infopositionDeviceMotion').innerHTML = 
-  'alpha : ' + alpha + '<br>' +
-  'beta  : ' + beta +  '<br>' +
-  'gamma : ' + gamma + '<br>';
+  'accelerationX : ' + accelerationX + '<br>' +
+  'accelerationY  : ' + accelerationY +  '<br>' +
+  'accelerationZ : ' + accelerationZ + '<br>'
+  'rotationRateAlpha : ' + rotationRateAlpha + '<br>'
+  'rotationRateBeta : ' + rotationRateBeta + '<br>'
+  'rotationRateGamma : ' + rotationRateGamma + '<br>';
 }
 
-window.addEventListener("devicemotion", handleMotion, true);
+window.addEventListener("devicemotion", handleMotionEvent, true);
 
 </script>
 </html>
