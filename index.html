@@ -14,6 +14,14 @@
 <br>
 <h1>Avec watchPosition </h1>
 <div id="infopositionWithWatch"></div>
+<br>
+<br>
+<h1>Avec deviceOrientation </h1>
+<div id="infopositionDeviceOrientation"></div>
+<br>
+<br>
+<h1>Avec deviceMotion </h1>
+<div id="infopositionDeviceMotion"></div>
 
 </body>
 <script>
@@ -51,5 +59,30 @@ getCurrentPositionInfos();
         }
     }
 watchCurrentPositionInfos();
+
+function handleOrientation(event) {
+  const alpha = event.alpha;
+  const beta = event.beta;
+  const gamma = event.gamma;
+  document.getElementById('infopositionDeviceOrientation').innerHTML = 
+  'alpha : ' + alpha + '<br>' +
+  'beta  : ' + beta +  '<br>' +
+  'gamma : ' + gamma + '<br>';
+}
+
+window.addEventListener("deviceorientation", handleOrientation, true);
+
+function handleMotion(deviceOrientation) {
+  const alpha = event.alpha;
+  const beta = event.beta;
+  const gamma = event.gamma;
+  document.getElementById('infopositionDeviceMotion').innerHTML = 
+  'alpha : ' + alpha + '<br>' +
+  'beta  : ' + beta +  '<br>' +
+  'gamma : ' + gamma + '<br>';
+}
+
+window.addEventListener("devicemotion", handleMotion, true);
+
 </script>
 </html>
