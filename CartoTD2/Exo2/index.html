@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercice 2</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="map" style="width: 600px; height: 400px;"></div>
+
+  <script>
+    var map = L.map('map').setView([0, 0], 5);
+
+    // Use the Watercolor tile layer
+    L.tileLayer('http://{s}.tile.stamen.com/terrain/{z}/{x}/{y}.jpg', {
+      attribution: '&copy; <a href="http://maps.stamen.com/ terrain.html">Terrain</a> contributors'
+    }).addTo(map);
+
+    // Triangle des Bermudes
+    var triangle = L.polygon([
+      [25.774, -80.19],
+      [18.466, -66.118],
+      [32.321, -64.757]
+    ], { color: 'red' }).addTo(map);
+
+    navigator.geolocation.getCurrentPosition(function (location) {
+      var lat = location.coords.latitude;
+      var lon = location.coords.longitude;
+
+      L.circle([lat, lon], {
+        color: 'blue',
+        fillColor: '#0080FF',
+        fillOpacity: 0.2,
+        radius: location.coords.accuracy
+      }).addTo(map);
+
+
+      L.marker([43.2965, 5.3698]).addTo(map).bindPopup("Marseille");
+      
+  
+      var marseilleLatLng = L.latLng(43.2965, 5.3698);
+      var userLatLng = L.latLng(lat, lon);
+      L.polyline([marseilleLatLng, userLatLng], { color: 'green' }).addTo(map);
+
+
+      var distance = marseilleLatLng.distanceTo(userLatLng).toFixed(2);
+      L.popup().setLatLng(userLatLng).setContent("Distance à Marseille : " + distance + " mètres").openOn(map);
+    });
+  </script>
+</body>
+</html>

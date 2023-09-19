@@ -1,148 +1,15 @@
-<!Doctype html>
-<html lang="fr">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HTML5 TP1 : Géolocalisation</title>
+    <title>Page d'accueil</title>
 </head>
 <body>
-
-<!-- Un élément HTML pour recueillir l’affichage -->
-<h1>Avec getCurrentPosition </h1>
-<div id="infopositionWithGet"></div>
-<br>
-<br>
-<h1>Avec watchPosition </h1>
-<div id="infopositionWithWatch"></div>
-<br>
-<br>
-<h1>Avec deviceOrientation </h1>
-<div id="infopositionDeviceOrientation"></div>
-<br>
-<br>
-<h1>Avec deviceMotion </h1>
-<div id="infopositionDeviceMotion"></div>
-<br>
-<br>
-<div id="output"></div>
-<canvas id="canvas" style="border: 1px solid black;"></canvas>
-
+    <h1>Page d'accueil</h1>
+    <ul>
+        <li><a href="CartoTD1/index.html">Accéder à TP1</a></li>
+        <li><a href="CartoTD2/Exo1/index.html">Accéder à TP2 Exo1</a></li>
+        <li><a href="CartoTD2/Exo2/index.html">Accéder à TP2 Exo2</a></li>
+        <li><a href="CartoTD2/Exo3/">Accéder à TP2 Exo3</a></li>
+    </ul>
 </body>
-<script>
-    function getCurrentPositionInfos() {
-        if ( navigator.geolocation ) {
-            navigator.geolocation.getCurrentPosition(function(position){
-                let lat = position.coords.latitude;
-                let long = position.coords.longitude;
-                let altitude = position.coords.altitude;
-                let precisionMesure = position.coords.accuracy;
-                let vitesse = position.coords.speed;
-                let dateTime = position.timestamp;
-                document.getElementById('infopositionWithGet').innerHTML = 'latitude : ' + lat
-                + '<br>' + 'longitude : ' + long + '<br>' + 'altitude : ' + altitude + '<br>' + 
-                'precisionMesure : ' + precisionMesure + '<br>' + 'vitesse : ' + vitesse + '<br>' + 'dateTime : '
-                + dateTime;
-        });
-    }
-}
-getCurrentPositionInfos();
-    function watchCurrentPositionInfos() {
-        if ( navigator.geolocation ) {
-            navigator.geolocation.watchPosition(function(position) {
-                let lat = position.coords.latitude;
-                let long = position.coords.longitude;
-                let altitude = position.coords.altitude;
-                let precisionMesure = position.coords.accuracy;
-                let vitesse = position.coords.speed;
-                let dateTime = position.timestamp;
-                document.getElementById('infopositionWithWatch').innerHTML = 'latitude : ' + lat
-                + '<br>' + 'longitude : ' + long + '<br>' + 'altitude : ' + altitude + '<br>' + 
-                'precisionMesure : ' + precisionMesure + '<br>' + 'vitesse : ' + vitesse + '<br>' + 'dateTime : '
-                + dateTime;
-            })
-        }
-    }
-watchCurrentPositionInfos();
-
-function handleOrientation(event) {
-  const alpha = event.alpha;
-  const beta = event.beta;
-  const gamma = event.gamma;
-  document.getElementById('infopositionDeviceOrientation').innerHTML = 
-  'alpha : ' + alpha + '<br>' +
-  'beta  : ' + beta +  '<br>' +
-  'gamma : ' + gamma + '<br>';
-}
-
-window.addEventListener("deviceorientation", handleOrientation, true);
-
-function handleMotionEvent(event) {
-  const accelerationX = event.acceleration.x;
-  const accelerationY = event.acceleration.y;
-  const accelerationZ = event.acceleration.z;
-
-  const rotationRateAlpha = event.rotationRate.alpha;
-  const rotationRateBeta = event.rotationRate.beta;
-  const rotationRateGamma = event.rotationRate.gamma;
-
-  document.getElementById('infopositionDeviceMotion').innerHTML = 
-  'accelerationX : ' + accelerationX + '<br>' +
-  'accelerationY  : ' + accelerationY +  '<br>' +
-  'accelerationZ : ' + accelerationZ + '<br>' +
-  'rotationRateAlpha : ' + rotationRateAlpha + '<br>' +
-  'rotationRateBeta : ' + rotationRateBeta + '<br>' +
-  'rotationRateGamma : ' + rotationRateGamma + '<br>';
-}
-
-window.addEventListener("devicemotion", handleMotionEvent, true);
-
-
-let canvas = document.getElementById('canvas');
-let context = canvas.getContext('2d');
-let output = document.getElementById('output');
-
-canvas.addEventListener('touchstart', handleTouchStart);
-canvas.addEventListener('touchmove', handleTouchMove);
-canvas.addEventListener('touchend', handleTouchEnd);
-
-
-function handleTouchStart(event) {
-      event.preventDefault();
-      const touch = event.touches[0];
-      const x = touch.clientX - canvas.getBoundingClientRect().left;
-      const y = touch.clientY - canvas.getBoundingClientRect().top;
-
-      output.innerHTML = `Touch Start - Position: X=${x}, Y=${y}`;
-      drawPoint(x, y);
-    }
-
-    function handleTouchMove(event) {
-      event.preventDefault();
-      const touch = event.touches[0];
-      const x = touch.clientX - canvas.getBoundingClientRect().left;
-      const y = touch.clientY - canvas.getBoundingClientRect().top;
-
-      output.innerHTML = `Touch Move - Position: X=${x}, Y=${y}`;
-      drawPoint(x, y);
-    }
-    function handleTouchStart(event) {
-      event.preventDefault();
-      const touch = event.touches[0];
-      const x = touch.clientX - canvas.getBoundingClientRect().left;
-      const y = touch.clientY - canvas.getBoundingClientRect().top;
-
-      output.innerHTML = `Touch Start - Position: X=${x}, Y=${y}`;
-      drawPoint(x, y);
-    }
-
-    function handleTouchMove(event) {
-      event.preventDefault();
-      const touch = event.touches[0];
-      const x = touch.clientX - canvas.getBoundingClientRect().left;
-      const y = touch.clientY - canvas.getBoundingClientRect().top;
-
-      output.innerHTML = `Touch Move - Position: X=${x}, Y=${y}`;
-      drawPoint(x, y);
-    } 
-</script>
 </html>

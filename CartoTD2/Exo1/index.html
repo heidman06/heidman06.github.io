@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercice 1</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="map" style="width: 600px; height: 400px;"></div>
+
+  <script>
+    var map = L.map('map').setView([0, 0], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Obtenir la géolocalisation de l'utilisateur
+    navigator.geolocation.getCurrentPosition(function (location) {
+      var lat = location.coords.latitude;
+      var lon = location.coords.longitude;
+      L.marker([lat, lon]).addTo(map).bindPopup("Votre position actuelle.").openPopup();
+    });
+    
+    // Marqueur pour Nice (centre-ville)
+    L.marker([43.7031, 7.2661]).addTo(map).bindPopup("Nice (centre-ville)").openPopup();
+  </script>
+</body>
+</html>
