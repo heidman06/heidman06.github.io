@@ -61,7 +61,7 @@ const material = new THREE.MeshBasicMaterial();
 material.map = texture;
 
 const materialRoom = new THREE.MeshBasicMaterial();
-const textureRoom = loaderTexture.load('../TEXTURES/textureHouse.jpeg');
+const textureRoom = loaderTexture.load('textureHouse.jpeg');
 materialRoom.map = textureRoom;
 
 // On cree le cube avec la geometry et le material
