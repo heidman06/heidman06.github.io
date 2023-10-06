@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dessin dans un canvas HTML</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1500" height="1200"></canvas>
+
+<script>
+    // Chargement de l'image
+    const image = new Image();
+    image.src = "ciel-mer.jpg";
+    image.onload = function() {
+        // Affichage de l'image
+        const ctx = document.getElementById("myCanvas").getContext("2d");
+        ctx.drawImage(image, 0, 0);
+
+        // Dessin du bateau
+        let x = 650;
+        let y = 500;
+        ctx.fillStyle = "brown";
+        ctx.fillRect(x, y, 150, 50);
+
+        // Dessin des deux triangle du bateau
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + 70, y - 150);
+        ctx.lineTo(x + 70, y);
+        ctx.fill();
+
+        // Dessin du soleil
+        x = 50;
+        y = 50;
+        const radius = 25;
+        ctx.fillStyle = "yellow";
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, 2 * Math.PI);
+        ctx.fill();
+    };
+</script>
+</body>
+</html>
